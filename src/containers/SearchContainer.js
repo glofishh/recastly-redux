@@ -1,10 +1,17 @@
+import React from 'react';
+import ReduxThunk from 'redux-thunk';
 import { connect } from 'react-redux';
 import Search from './../components/Search.js';
 import handleSearchChange from '../actions/search.js';
-const mapStateToProps=state=>({ });
-const mapDispatchToProps=dispatch=>{
+
+const mapStateToProps=(state)=>{
   return {
-    handleSearchInputChange:(video)=>{dispatch(handleSearchChange(video))}
+    value: state.video
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleSearchInputChange: query => {dispatch(handleSearchChange(query))}
   }
 }
 const SearchContainer = connect(mapStateToProps,mapDispatchToProps)(Search)
@@ -15,10 +22,3 @@ const SearchContainer = connect(mapStateToProps,mapDispatchToProps)(Search)
 //state and dispatch mappings.
 
 export default SearchContainer;
-// connect() Parameters
-// connect accepts four different parameters, all optional. By convention, they are called:
-
-// mapStateToProps?: Function
-// mapDispatchToProps?: Function | Object
-// mergeProps?: Function
-// options?: Object
